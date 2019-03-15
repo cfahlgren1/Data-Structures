@@ -1,8 +1,13 @@
+/**
+ * @author Caleb Fahlgren
+ * @version 3/15/2019
+ * @param <T>
+ */
 public class LinkedList<T>
 {
-   public Node head; //head of list
-   public Node tail; //tail of list
-   public int size; //size of list
+   private Node head; //head of list
+   private Node tail; //tail of list
+   private int size; //size of list
 
    public LinkedList(T item)
    {
@@ -112,6 +117,19 @@ public class LinkedList<T>
       return size == 0;
    }
 
+   //get head
+   public T getHead()
+   {
+      return (T) head.getData();
+   }
+
+   //get tail
+   public T getTail()
+   {
+      return (T) tail.getData();
+   }
+
+
    //return the size of the list
    public int getSize()
    {
@@ -129,8 +147,4 @@ public class LinkedList<T>
       }
       return output;
    }
-
-
-
-
 }
