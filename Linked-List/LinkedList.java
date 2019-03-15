@@ -9,10 +9,13 @@ public class LinkedList<T>
    private Node tail; //tail of list
    private int size; //size of list
 
+   //create new linked list with one node
    public LinkedList(T item)
    {
-      head = new Node(item);
+      Node node = new Node(item);
+      head = node;
       size = 1;
+      tail = node;
    }
 
    //add node at the front of the list
@@ -31,16 +34,18 @@ public class LinkedList<T>
       Node node = new Node(item);
       if (head.next == null)
       {
-         head.next = node;
-         node.prev = head;
+         Node temp = tail;
+         tail.next = node;
+         tail = node;
+         tail.prev = temp;
+         tail.next = null;
       }
-      Node temp = head;
-      while (temp.next != null)
+      else
       {
-         temp = temp.next;
+         Node temp = tail;
+         temp.next = node;
+         node.prev = temp;
       }
-      temp.next = node;
-      node.prev = temp;
       tail = node;
       size ++;
    }
@@ -117,18 +122,17 @@ public class LinkedList<T>
       return size == 0;
    }
 
-   //get head
+   //get head node
    public T getHead()
    {
       return (T) head.getData();
    }
 
-   //get tail
+   //get tail node
    public T getTail()
    {
       return (T) tail.getData();
    }
-
 
    //return the size of the list
    public int getSize()
@@ -136,6 +140,7 @@ public class LinkedList<T>
       return size;
    }
 
+   //to string method, prints all nodes
    public String toString()
    {
       Node temp = head;
