@@ -34,11 +34,7 @@ public class LinkedList<T>
       Node node = new Node(item);
       if (head.next == null)
       {
-         Node temp = tail;
-         tail.next = node;
-         tail = node;
-         tail.prev = temp;
-         tail.next = null;
+         head = tail = node;
       }
       else
       {
