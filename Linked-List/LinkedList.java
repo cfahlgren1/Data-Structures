@@ -32,7 +32,12 @@ public class LinkedList<T>
    public void addAtTail(T item)
    {
       Node node = new Node(item);
-      if (head.next == null)
+      if (head == null)
+      {
+         head = node;
+         tail = node;
+      }
+      else if (head.next == null)
       {
          head = tail = node;
       }
@@ -81,8 +86,10 @@ public class LinkedList<T>
    //remove indicated node by removing access/pointers to it
    public void remove(Node node)
    {
-      if (node == null)
+      if (head.next == null)
       {
+         head = null;
+         size--;
          return;
       }
       Node temp = head;
@@ -90,20 +97,27 @@ public class LinkedList<T>
       {
          if (temp.getData().equals(node.getData()))
          {
+            //best case, quickly remove head
             if (node == head)
             {
                this.removeHead();
             }
+            //best case, quickly remove tail
             if (node == tail)
             {
                this.removeTail();
             }
+            //loop and find node
             else
             {
                if (temp.prev != null)
+               {
                   temp.prev.next = temp.next;
+               }
                if (temp.next != null)
+               {
                   temp.next.prev = temp.prev;
+               }
                size --;
             }
          }
@@ -140,12 +154,12 @@ public class LinkedList<T>
    public String toString()
    {
       Node temp = head;
-      String output = "";
+      String output = "[";
       while(temp != null)
       {
-         output += (temp.data + " <==> ");
+         output += (temp.data + " ");
          temp = temp.next;
       }
-      return output;
+      return output + "]";
    }
 }
