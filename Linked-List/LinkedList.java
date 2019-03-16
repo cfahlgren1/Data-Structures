@@ -54,17 +54,19 @@ public class LinkedList<T>
    //remove head node
    public void removeHead()
    {
-      if (head == tail)
+      if (!isEmpty())
       {
-         head = null;
-         tail = null;
+         if (head == tail)
+         {
+            head = null;
+            tail = null;
+         } else
+         {
+            head = head.next;
+            head.prev = null;
+         }
+         size--;
       }
-      else
-      {
-         head = head.next;
-         head.prev = null;
-      }
-      size --;
    }
 
    //remove tail node

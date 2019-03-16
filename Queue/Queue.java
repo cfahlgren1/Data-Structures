@@ -5,9 +5,9 @@
  */
 public class Queue<T>
 {
-   private Node head;
-   private Node tail;
-   private int size;
+   private Node head; //node that will be dequeued
+   private Node tail; //node that was most recently added
+   private int size; //number of nodes
 
    //constructor that initializes queue
    public Queue()
@@ -21,7 +21,12 @@ public class Queue<T>
    public void enQueue(T data)
    {
       Node node = new Node(data);
-      if (head.next == null)
+      if (head == null)
+      {
+         head = node;
+         tail = node;
+      }
+      else if (head.next == null)
       {
          head = tail = node;
       }
@@ -49,7 +54,20 @@ public class Queue<T>
             head.next.prev = null;
             head = head.next;
          }
+         size--;
       }
+   }
+
+   //grab head node
+   public T peek()
+   {
+      return (T) head.getData();
+   }
+
+   //grab tail node
+   public T last()
+   {
+      return (T) tail.getData();
    }
 
    //check if queue is empty
@@ -62,12 +80,12 @@ public class Queue<T>
    public String toString()
    {
       Node temp = head;
-      String output = "";
+      String output = "[ ";
       while(temp != null)
       {
-         output += (temp.data + " <==> ");
+         output += (temp.data + "  ");
          temp = temp.next;
       }
-      return output;
+      return output + " ]";
    }
 }
