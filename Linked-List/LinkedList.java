@@ -35,11 +35,11 @@ public class LinkedList<T>
       if (head == null)
       {
          head = node;
-         tail = node;
       }
       else if (head.next == null)
       {
-         head = tail = node;
+         head.next = node;
+         node.prev = head;
       }
       else
       {
